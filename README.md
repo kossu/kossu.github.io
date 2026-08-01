@@ -1,2 +1,0 @@
-# patruuna
-patruuna-app
