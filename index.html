@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Patruunan Paranoia</title>
+  <style>
+    body {
+      background-color: #1a1a1a;
+      color: #fff;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      overflow: hidden;
+    }
+
+    /* Näyttämö ja patruuna */
+    .stage {
+      position: relative;
+      margin-bottom: 40px;
+    }
+
+    .patruuna {
+      width: 120px;
+      height: 240px;
+      position: relative;
+      transition: background-color 0.3s;
+    }
+
+    /* Patruunan hylsy (messinkiä) */
+    .casing {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      height: 150px;
+      background: linear-gradient(90deg, #d4af37, #fff2a8, #aa820a);
+      border-radius: 0 0 10px 10px;
+      box-shadow: inset 0 -10px 0 #8a6805;
+    }
+
+    /* Patruunan luoti (kärki) */
+    .bullet-tip {
+      position: absolute;
+      top: 0;
+      width: 100%;
+      height: 100px;
+      background: linear-gradient(90deg, #b87333, #f5c29b, #8b4513);
+      border-radius: 50% 50% 0 0 / 80% 80% 0 0;
+    }
+
+    /* Kasvot luodissa */
+    .face {
+      position: absolute;
+      top: 35px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      z-index: 2;
+    }
+
+    .eyes {
+      display: flex;
+      gap: 20px;
+    }
+
+    .eye {
+      width: 22px;
+      height: 22px;
+      background: white;
+      border-radius: 50%;
+      position: relative;
+      border: 1px solid #333;
+    }
+
+    .pupil {
+      width: 8px;
+      height: 8px;
+      background: black;
+      border-radius: 50%;
+      position: absolute;
+      top: 7px;
+      left: 7px;
+      transition: transform 0.05s ease;
+    }
+
+    .mouth {
+      width: 25px;
+      height: 4px;
+      background: #333;
+      margin-top: 15px;
+      border-radius: 2px;
+      transition: all 0.2s;
+    }
+
+    /* Hikipisarat */
+    .sweat-drop {
+      position: absolute;
+      background-color: #70c1ff;
+      border-radius: 0 50% 50% 50%;
+      transform: rotate(45deg);
+      opacity: 0;
+      animation: drip 1s infinite linear;
+    }
+
+    .drop1 { width: 12px; height: 12px; top: 25px; right: 10px; }
+    .drop2 { width: 8px;  height: 8px;  top: 45px; left: 12px; animation-delay: 0.4s; }
+
+    /* Paranoia-efektit (animaatiot) */
+    .paranoiac {
+      animation: shake 0.1s infinite alternate;
+    }
+
+    .paranoiac .sweat-drop {
+      opacity: 0.9;
+    }
+
+    .paranoiac .mouth {
+      height: 12px;
+      width: 18px;
+      border-radius: 50%;
+      background: #333;
+    }
+
+    @keyframes shake {
+      0% { transform: translate(1px, 1px) rotate(0deg); }
+      50% { transform: translate(-2px, -1px) rotate(-1deg); }
+      100% { transform: translate(2px, 0px) rotate(1deg); }
+    }
+
+    @keyframes drip {
+      0% { transform: translateY(0) rotate(45deg); opacity: 0; }
+      50% { opacity: 1; }
+      100% { transform: translateY(20px) rotate(45deg); opacity: 0; }
+    }
+
+    /* Liipaisinnappi */
+    button {
+      padding: 15px 35px;
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: white;
+      background: #e63946;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      box-shadow: 0 5px 15px rgba(230, 57, 70, 0.4);
+      outline: none;
+      user-select: none;
+    }
+
+    button:active {
+      transform: translateY(2px);
+      box-shadow: 0 2px 8px rgba(230, 57, 70, 0.4);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="stage">
+    <div class="patruuna" id="patruuna">
+      <div class="bullet-tip">
+        <div class="sweat-drop drop1"></div>
+        <div class="sweat-drop drop2"></div>
+        <div class="face">
+          <div class="eyes">
+            <div class="eye"><div class="pupil" id="pupil1"></div></div>
+            <div class="eye"><div class="pupil" id="pupil2"></div></div>
+          </div>
+          <div class="mouth"></div>
+        </div>
+      </div>
+      <div class="casing"></div>
+    </div>
+  </div>
+
+  <button id="panicBtn">PAINA tästä!</button>
+
+  <script>
+    const btn = document.getElementById('panicBtn');
+    const patruuna = document.getElementById('patruuna');
+    const pupil1 = document.getElementById('pupil1');
+    const pupil2 = document.getElementById('pupil2');
+    
+    let isParanoiac = false;
+    let eyeInterval = null;
+
+    btn.addEventListener('click', () => {
+      isParanoiac = !isParanoiac;
+
+      if (isParanoiac) {
+        // Kytke paranoia ja hiki päälle
+        patruuna.classList.add('paranoiac');
+        document.body.style.backgroundColor = "#2b0a0a"; // Tausta muuttuu kuumottavan punaiseksi
+        btn.innerText = "RAUHOITA PATRUUNA!";
+        btn.style.background = "#457b9d";
+
+        // Pupillit alkavat vilkuilla maanisesti sivuille
+        eyeInterval = setInterval(() => {
+          const x = (Math.random() - 0.5) * 12; // nopeat liikkeet vasen/oikea
+          const y = (Math.random() - 0.5) * 6;
+          pupil1.style.transform = `translate(${x}px, ${y}px)`;
+          pupil2.style.transform = `translate(${x}px, ${y}px)`;
+        }, 80);
+
+      } else {
+        // Rauhoita tilanne
+        patruuna.classList.remove('paranoiac');
+        document.body.style.backgroundColor = "#1a1a1a";
+        btn.innerText = "PAINA tästä!";
+        btn.style.background = "#e63946";
+
+        clearInterval(eyeInterval);
+        pupil1.style.transform = 'translate(0, 0)';
+        pupil2.style.transform = 'translate(0, 0)';
+      }
+    });
+  </script>
+</body>
+</html>
