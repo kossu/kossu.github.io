@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kotityö-noppa</title>
+  <style>
+    :root {
+      --bg-color: #f0f4f8;
+      --card-bg: #ffffff;
+      --primary: #3b82f6;
+      --primary-hover: #2563eb;
+      --text: #1e293b;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: row;
+      background: var(--card-bg);
+      border-radius: 20px;
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+      width: 100%;
+      max-width: 900px;
+      min-height: 500px;
+      overflow: hidden;
+    }
+
+    /* Vasen puoli: Noppamuotoilu ja 3D-näyttö */
+    .game-area {
+      flex: 2;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 40px;
+      perspective: 1000px;
+      background: linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 100%);
+      position: relative;
+    }
+
+    .scene {
+      width: 200px;
+      height: 200px;
+      perspective: 600px;
+    }
+
+    .cube {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 0.1s linear;
+    }
+
+    /* Jatkuva pyöritys alussa */
+    .cube.spinning {
+      animation: rotateCube 12s infinite linear;
+    }
+
+    @keyframes rotateCube {
+      0%   { transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg); }
+      16%  { transform: rotateX(0deg) rotateY(-90deg); }  /* Tiskaa */
+      33%  { transform: rotateX(0deg) rotateY(-180deg); } /* Käy kaupassa */
+      50%  { transform: rotateX(0deg) rotateY(-270deg); } /* Pese ikkunat */
+      66%  { transform: rotateX(-90deg) rotateY(0deg); }  /* Pese pyykki */
+      83%  { transform: rotateX(90deg) rotateY(0deg); }   /* Avaa kalja */
+      100% { transform: rotateX(360deg) rotateY(360deg); }
+    }
+
+    .cube__face {
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      border: 3px solid #cbd5e1;
+      background: rgba(255, 255, 255, 0.95);
+      font-size: 20px;
+      font-weight: bold;
+      color: #1e293b;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 15px;
+      border-radius: 16px;
+      box-shadow: inset 0 0 15px rgba(0,0,0,0.1);
+      user-select: none;
+    }
+
+    /* Nopan sivujen sijoitukset 3D-tilassa */
+    .cube__face--front  { transform: rotateY(0deg) translateZ(100px); }
+    .cube__face--right  { transform: rotateY(90deg) translateZ(100px); }
+    .cube__face--back   { transform: rotateY(180deg) translateZ(100px); }
+    .cube__face--left   { transform: rotateY(-90deg) translateZ(100px); }
+    .cube__face--top    { transform: rotateX(90deg) translateZ(100px); }
+    .cube__face--bottom { transform: rotateX(-90deg) translateZ(100px); background: #fef08a; border-color: #facc15; }
+
+    /* Oikea puoli: Ohjeet ja näppäimet */
+    .sidebar {
+      flex: 1;
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      border-left: 1px solid #e2e8f0;
+    }
+
+    .sidebar h1 {
+      font-size: 24px;
+      margin-bottom: 15px;
+      color: #0f172a;
+    }
+
+    .sidebar p {
+      font-size: 16px;
+      line-height: 1.5;
+      color: #64748b;
+      margin-bottom: 30px;
+    }
+
+    .btn {
+      background-color: var(--primary);
+      color: white;
+      border: none;
+      padding: 14px 28px;
+      font-size: 18px;
+      font-weight: 600;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      width: 100%;
+      box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.5);
+    }
+
+    .btn:hover {
+      background-color: var(--primary-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 8px -1px rgba(59, 130, 246, 0.6);
+    }
+
+    .btn:disabled {
+      background-color: #94a3b8;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+
+    /* Voittoruutu / Tulos */
+    .result-overlay {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      animation: fadeIn 0.5s ease forwards;
+    }
+
+    .result-title {
+      font-size: 32px;
+      font-weight: 800;
+      color: #dc2626;
+      margin-bottom: 20px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      text-shadow: 2px 2px 0px #fef08a;
+    }
+
+    .reset-btn {
+      background-color: #10b981;
+      box-shadow: 0 4px 6px -1px rgba(16, 185, 129, 0.5);
+    }
+
+    .reset-btn:hover {
+      background-color: #059669;
+      box-shadow: 0 6px 8px -1px rgba(16, 185, 129, 0.6);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    /* Responsiivisuus mobiililaitteille */
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+      }
+      .sidebar {
+        border-left: none;
+        border-top: 1px solid #e2e8f0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <!-- Vasen osio: Noppa -->
+    <div class="game-area">
+      <div class="scene">
+        <div class="cube spinning" id="cube">
+          <div class="cube__face cube__face--front">Siivoa</div>
+          <div class="cube__face cube__face--right">Tiskaa</div>
+          <div class="cube__face cube__face--back">Käy kaupassa</div>
+          <div class="cube__face cube__face--left">Pese ikkunat</div>
+          <div class="cube__face cube__face--top">Pese pyykki</div>
+          <div class="cube__face cube__face--bottom">Avaa kalja 🍺</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Oikea osio: Ohjeet ja toiminnot -->
+    <div class="sidebar">
+      <div id="instruction-panel">
+        <h1>Mitä tekisit tänään?</h1>
+        <p>Paina nappia, niin noppa kertoo mitä sinun pitäisi juuri nyt tehdä.</p>
+        <button class="btn" id="roll-btn">Heitä noppaa</button>
+      </div>
+
+      <div id="result-panel" class="result-overlay">
+        <div class="result-title">Sinun täytyy avata kalja!</div>
+        <button class="btn reset-btn" id="reset-btn">Alkuun</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // HTML-elementit
+    const cube = document.getElementById('cube');
+    const rollBtn = document.getElementById('roll-btn');
+    const resetBtn = document.getElementById('reset-btn');
+    const instructionPanel = document.getElementById('instruction-panel');
+    const resultPanel = document.getElementById('result-panel');
+
+    // Web Audio API äänitehosteille
+    let audioCtx = null;
+
+    function initAudio() {
+      if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      }
+    }
+
+    // Nopan pyörimisääni (tikitys)
+    function playTickSound() {
+      if (!audioCtx) return;
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      
+      osc.type = 'triangle';
+      osc.frequency.setValueAtTime(150 + Math.random() * 100, audioCtx.currentTime);
+      
+      gain.gain.setValueAtTime(0.1, audioCtx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.05);
+      
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+      
+      osc.start();
+      osc.stop(audioCtx.currentTime + 0.05);
+    }
+
+    // Sirkushenkinen iloinen fanfaari / musiikki lopukseen
+    function playCircusMusic() {
+      if (!audioCtx) return;
+
+      // Sävelet (nuotti, kesto)
+      const notes = [
+        { note: 523.25, duration: 0.12 }, // C5
+        { note: 587.33, duration: 0.12 }, // D5
+        { note: 659.25, duration: 0.12 }, // E5
+        { note: 698.46, duration: 0.12 }, // F5
+        { note: 783.99, duration: 0.25 }, // G5
+        { note: 659.25, duration: 0.12 }, // E5
+        { note: 783.99, duration: 0.40 }, // G5
+        { note: 880.00, duration: 0.15 }, // A5
+        { note: 783.99, duration: 0.15 }, // G5
+        { note: 698.46, duration: 0.15 }, // F5
+        { note: 659.25, duration: 0.15 }, // E5
+        { note: 1046.50, duration: 0.50 } // C6
+      ];
+
+      let startTime = audioCtx.currentTime + 0.1;
+
+      notes.forEach(({ note, duration }) => {
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+
+        osc.type = 'square'; // Sirkusmaisempi "urku"-tyylinen aaltomuoto
+        osc.frequency.setValueAtTime(note, startTime);
+
+        gain.gain.setValueAtTime(0.15, startTime);
+        gain.gain.exponentialRampToValueAtTime(0.01, startTime + duration - 0.02);
+
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+
+        osc.start(startTime);
+        osc.stop(startTime + duration);
+
+        startTime += duration;
+      });
+    }
+
+    // Heitto-toiminto
+    rollBtn.addEventListener('click', () => {
+      initAudio();
+      rollBtn.disabled = true;
+
+      // Poistetaan alustava hidas pyöritys
+      cube.classList.remove('spinning');
+
+      let currentX = 0;
+      let currentY = 0;
+      let counter = 0;
+      const maxTicks = 25; // Kuinka monta kertaa noppa "pyörähtää"
+      let speed = 50; // Aloitusnopeus ms
+
+      function animateRoll() {
+        // Arvotaan satunnaisia kulmia pyörityksen aikana
+        currentX += (Math.floor(Math.random() * 3) + 1) * 90;
+        currentY += (Math.floor(Math.random() * 3) + 1) * 90;
+        
+        cube.style.transform = `rotateX(${currentX}deg) rotateY(${currentY}deg)`;
+        playTickSound();
+        
+        counter++;
+
+        if (counter < maxTicks) {
+          // Hidastetaan pyörimistä loppua kohden
+          speed += 12;
+          setTimeout(animateRoll, speed);
+        } else {
+          // Asetetaan noppa AINA kohtaan "Avaa kalja" (Bottom-sivu = rotateX(90deg))
+          // Varmistetaan sulava pyörähdys lopulliseen kulmaan
+          const finalX = Math.ceil(currentX / 360) * 360 + 90;
+          const finalY = Math.ceil(currentY / 360) * 360;
+          
+          cube.style.transition = "transform 0.8s cubic-bezier(0.17, 0.67, 0.83, 0.67)";
+          cube.style.transform = `rotateX(${finalX}deg) rotateY(${finalY}deg)`;
+
+          // Kun noppa pysähtyy
+          setTimeout(() => {
+            playCircusMusic();
+            instructionPanel.style.display = 'none';
+            resultPanel.style.display = 'flex';
+          }, 800);
+        }
+      }
+
+      animateRoll();
+    });
+
+    // Reset-toiminto (Alkuun)
+    resetBtn.addEventListener('click', () => {
+      // Palautetaan nopan tyylit ja animaatiot
+      cube.style.transition = 'transform 0.1s linear';
+      cube.style.transform = '';
+      cube.classList.add('spinning');
+
+      // Vaihdetaan paneelit
+      resultPanel.style.display = 'none';
+      instructionPanel.style.display = 'block';
+      rollBtn.disabled = false;
+    });
+  </script>
+</body>
+</html>
