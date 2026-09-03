@@ -5,6 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tuomitseeko pankkiiri?</title>
   <style>
+    :root {
+      --bg-color: #0f172a;
+      --card-bg: #1e293b;
+      --primary: #eab308;
+      --primary-hover: #ca8a04;
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+    }
+
     * {
       box-sizing: border-box;
       margin: 0;
@@ -12,9 +21,9 @@
     }
 
     body {
-      font-family: sans-serif;
-      background-color: #0f172a;
-      color: #f8fafc;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text);
       min-height: 100vh;
       display: flex;
       justify-content: center;
@@ -25,9 +34,9 @@
     .container {
       display: flex;
       flex-direction: row;
-      background: #1e293b;
+      background: var(--card-bg);
       border-radius: 20px;
-      box-shadow: 0 20px 25px rgba(0, 0, 0, 0.5);
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
       width: 100%;
       max-width: 900px;
       min-height: 500px;
@@ -35,19 +44,22 @@
       border: 1px solid #334155;
     }
 
+    /* Vasen puoli: Kolikko ja 3D-animaatio */
     .game-area {
       flex: 2;
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
       padding: 40px;
-      background: #0f172a;
+      perspective: 1000px;
+      background: radial-gradient(circle, #1e293b 0%, #0f172a 100%);
     }
 
     .scene {
       width: 200px;
       height: 200px;
-      perspective: 1000px;
+      perspective: 800px;
     }
 
     .coin {
@@ -55,10 +67,12 @@
       height: 100%;
       position: relative;
       transform-style: preserve-3d;
+      transition: transform 0.1s linear;
     }
 
+    /* Hidas pyöritys alussa */
     .coin.spinning {
-      animation: spinCoin 3s infinite linear;
+      animation: spinCoin 6s infinite linear;
     }
 
     @keyframes spinCoin {
@@ -68,9 +82,10 @@
 
     .coin__face {
       position: absolute;
-      width: 100%;
-      height: 100%;
+      width: 200px;
+      height: 200px;
       border-radius: 50%;
+      backface-visibility: hidden;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -80,13 +95,13 @@
       font-weight: 800;
       text-transform: uppercase;
       user-select: none;
+      box-shadow: 0 0 15px rgba(234, 179, 8, 0.3), inset 0 0 15px rgba(0,0,0,0.4);
       border: 8px solid #fef08a;
-      background: #facc15;
+      background: linear-gradient(135deg, #facc15 0%, #ca8a04 100%);
       color: #422006;
-      -webkit-backface-visibility: hidden;
-      backface-visibility: hidden;
     }
 
+    /* Kolikon puolet */
     .coin__face--front {
       transform: rotateY(0deg);
     }
@@ -95,6 +110,7 @@
       transform: rotateY(180deg);
     }
 
+    /* Oikea puoli: Ohjeet ja hallinta */
     .sidebar {
       flex: 1;
       padding: 40px;
@@ -114,12 +130,12 @@
     .sidebar p {
       font-size: 16px;
       line-height: 1.5;
-      color: #94a3b8;
+      color: var(--text-muted);
       margin-bottom: 30px;
     }
 
     .btn {
-      background-color: #eab308;
+      background-color: var(--primary);
       color: #422006;
       border: none;
       padding: 14px 28px;
@@ -127,25 +143,33 @@
       font-weight: 700;
       border-radius: 10px;
       cursor: pointer;
+      transition: all 0.2s ease;
       width: 100%;
+      box-shadow: 0 4px 6px -1px rgba(234, 179, 8, 0.4);
     }
 
     .btn:hover {
-      background-color: #ca8a04;
+      background-color: var(--primary-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 8px -1px rgba(234, 179, 8, 0.5);
     }
 
     .btn:disabled {
       background-color: #64748b;
       color: #cbd5e1;
       cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
     }
 
+    /* Voittoruutu / Tulos */
     .result-overlay {
       display: none;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       text-align: center;
+      animation: fadeIn 0.5s ease forwards;
     }
 
     .result-title {
@@ -154,15 +178,195 @@
       color: #ef4444;
       margin-bottom: 20px;
       text-transform: uppercase;
+      letter-spacing: 1px;
+      text-shadow: 0 0 10px rgba(239, 68, 68, 0.5);
     }
 
     .reset-btn {
       background-color: #10b981;
       color: #022c22;
+      box-shadow: 0 4px 6px -1px rgba(16, 185, 129, 0.4);
     }
 
     .reset-btn:hover {
       background-color: #059669;
+      box-shadow: 0 6px 8px -1px rgba(16, 185, 129, 0.5);
     }
 
-    @media (max-width: 76
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    /* Responsiivisuus */
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+      }
+      .sidebar {
+        border-left: none;
+        border-top: 1px solid #334155;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="game-area">
+      <div class="scene">
+        <div class="coin spinning" id="coin">
+          <div class="coin__face coin__face--front">Ei tuomitse</div>
+          <div class="coin__face coin__face--back">Tuomitsee</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sidebar">
+      <div id="instruction-panel">
+        <h1>Tuomitseeko pankkiiri?</h1>
+        <p>Paina nappia, niin noppa/kolikko kertoo mitä pankkiiri on mieltä valinnoistasi.</p>
+        <button class="btn" id="flip-btn">Heitä kolikkoa</button>
+      </div>
+
+      <div id="result-panel" class="result-overlay">
+        <div class="result-title">Pankkiiri tuomitsee!</div>
+        <button class="btn reset-btn" id="reset-btn">Alkuun</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // HTML-elementit
+    const coin = document.getElementById('coin');
+    const flipBtn = document.getElementById('flip-btn');
+    const resetBtn = document.getElementById('reset-btn');
+    const instructionPanel = document.getElementById('instruction-panel');
+    const resultPanel = document.getElementById('result-panel');
+
+    // Web Audio API äänille
+    let audioCtx = null;
+
+    function initAudio() {
+      if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      }
+    }
+
+    // Pyörimisen/viuhahduksen ääni
+    function playFlipSound() {
+      if (!audioCtx) return;
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(300 + Math.random() * 200, audioCtx.currentTime);
+      
+      gain.gain.setValueAtTime(0.08, audioCtx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.04);
+      
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+      
+      osc.start();
+      osc.stop(audioCtx.currentTime + 0.04);
+    }
+
+    // Sirkusmusiikki loppuun
+    function playCircusMusic() {
+      if (!audioCtx) return;
+
+      const notes = [
+        { note: 523.25, duration: 0.12 }, // C5
+        { note: 587.33, duration: 0.12 }, // D5
+        { note: 659.25, duration: 0.12 }, // E5
+        { note: 698.46, duration: 0.12 }, // F5
+        { note: 783.99, duration: 0.25 }, // G5
+        { note: 659.25, duration: 0.12 }, // E5
+        { note: 783.99, duration: 0.40 }, // G5
+        { note: 880.00, duration: 0.15 }, // A5
+        { note: 783.99, duration: 0.15 }, // G5
+        { note: 698.46, duration: 0.15 }, // F5
+        { note: 659.25, duration: 0.15 }, // E5
+        { note: 1046.50, duration: 0.50 } // C6
+      ];
+
+      let startTime = audioCtx.currentTime + 0.1;
+
+      notes.forEach(({ note, duration }) => {
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+
+        osc.type = 'square';
+        osc.frequency.setValueAtTime(note, startTime);
+
+        gain.gain.setValueAtTime(0.12, startTime);
+        gain.gain.exponentialRampToValueAtTime(0.01, startTime + duration - 0.02);
+
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+
+        osc.start(startTime);
+        osc.stop(startTime + duration);
+
+        startTime += duration;
+      });
+    }
+
+    // Kolikon heitto
+    flipBtn.addEventListener('click', () => {
+      initAudio();
+      flipBtn.disabled = true;
+
+      // Pysäytetään alkuperäinen animaatio
+      coin.classList.remove('spinning');
+
+      let currentRotation = 0;
+      let counter = 0;
+      const maxFlips = 30; 
+      let speed = 30; // Alun nopeus
+
+      function animateFlip() {
+        currentRotation += 180;
+        coin.style.transform = `rotateY(${currentRotation}deg)`;
+        playFlipSound();
+        
+        counter++;
+
+        if (counter < maxFlips) {
+          speed += 8; // Hidastuu vähitellen
+          setTimeout(animateFlip, speed);
+        } else {
+          // Varmistetaan että tulos päättyy AINA "Tuomitsee"-puolelle (180 deg)
+          // Pari luvun kertoimia -> päättyy 180 asteeseen (back-face)
+          const finalRotation = Math.ceil(currentRotation / 360) * 360 + 180;
+          
+          coin.style.transition = "transform 0.8s cubic-bezier(0.17, 0.67, 0.83, 0.67)";
+          coin.style.transform = `rotateY(${finalRotation}deg)`;
+
+          setTimeout(() => {
+            playCircusMusic();
+            instructionPanel.style.display = 'none';
+            resultPanel.style.display = 'flex';
+          }, 800);
+        }
+      }
+
+      animateFlip();
+    });
+
+    // Reset-toiminto (Alkuun)
+    resetBtn.addEventListener('click', () => {
+      // Palautetaan kolikon tila ja animaatio
+      coin.style.transition = 'transform 0.1s linear';
+      coin.style.transform = '';
+      coin.classList.add('spinning');
+
+      // Vaihdetaan näkymät
+      resultPanel.style.display = 'none';
+      instructionPanel.style.display = 'block';
+      flipBtn.disabled = false;
+    });
+  </script>
+</body>
+</html>
