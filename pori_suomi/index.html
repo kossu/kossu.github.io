@@ -1,1 +1,65 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pori vai Suomi? – Suuri Uutisvisa</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-container">
+    <header class="app-header">
+      <div class="brand">
+        <span class="brand-tag">UUTISVISA</span>
+        <h1>PORI VAI SUOMI?</h1>
+      </div>
+      <div class="stats-bar">
+        <span>Otsikko <strong id="current-num">1</strong> / <span id="total-num">10</span></span>
+        <span>Pisteet: <strong id="score">0</strong></span>
+      </div>
+    </header>
 
+    <main class="quiz-card">
+      <div class="newspaper-header">
+        <span class="paper-kicker">ERIKOISUUTISET · TAPAHTUI SUOMESSA</span>
+        <span class="source-tag" id="paper-source">Lähde salattu 🔒</span>
+      </div>
+
+      <div class="headline-container">
+        <p class="headline-text" id="headline-text">Otsikko latautuu...</p>
+      </div>
+
+      <div class="options-grid" id="options-grid">
+        <button class="choice-btn" id="btn-pori" onclick="answer('Pori')">
+          <span class="btn-badge">1</span> PORI
+        </button>
+        <button class="choice-btn" id="btn-suomi" onclick="answer('Suomi')">
+          <span class="btn-badge">2</span> SUOMI
+        </button>
+      </div>
+
+      <div class="feedback-panel" id="feedback-panel" style="display: none;">
+        <div class="feedback-status" id="feedback-status"></div>
+        <p class="context-note" id="context-note"></p>
+        <a class="source-link" id="source-link" href="#" target="_blank" rel="noopener noreferrer">
+          Lue alkuperäinen uutinen tästä ↗
+        </a>
+        <button class="next-btn" id="next-btn" onclick="nextQuestion()">Seuraava uutinen →</button>
+      </div>
+    </main>
+
+    <div class="game-over-modal" id="game-over-modal" style="display: none;">
+      <h2>Peli päättyi!</h2>
+      <p class="final-score" id="final-score-text">Sait 0 / 10 pistettä</p>
+      <p class="verdict" id="verdict-text"></p>
+      <button class="restart-btn" onclick="initGame()">Pelaa uudelleen</button>
+      <a class="whatsapp-btn" id="whatsapp-share-btn" href="#" target="_blank" rel="noopener noreferrer">Jaa WhatsAppissa</a>
+    </div>
+  </div>
+
+  <!-- Kysymykset ladataan ensin omasta questions.js -tiedostostaan -->
+  <script src="questions.js"></script>
+  <!-- Pelimoottori -->
+  <script src="script.js"></script>
+</body>
+</html>
