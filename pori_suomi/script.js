@@ -16,6 +16,29 @@ let currentDeck = [];
 let currentIndex = 0;
 let score = 0;
 
+function getArticleUrl(item) {
+  if (!item.url || item.url === '#' || item.url === '/') {
+    return 'https://www.google.com/search?q=' + encodeURIComponent(item.fullText.replace(/[”"]/g, ''));
+  }
+  try {
+    const urlObj = new URL(item.url);
+    if (urlObj.pathname === '/' || urlObj.pathname === '') {
+      const clean = item.fullText.replace(/[”"]/g, '');
+      if (urlObj.hostname.includes('is.fi')) return 'https://www.is.fi/haku/?query=' + encodeURIComponent(clean);
+      if (urlObj.hostname.includes('iltalehti.fi')) return 'https://www.iltalehti.fi/haku?q=' + encodeURIComponent(clean);
+      if (urlObj.hostname.includes('yle.fi')) return 'https://yle.fi/uutiset/tuoreet?haku=' + encodeURIComponent(clean);
+      if (urlObj.hostname.includes('satakunnankansa.fi')) return 'https://www.satakunnankansa.fi/haku/?query=' + encodeURIComponent(clean);
+      if (urlObj.hostname.includes('hs.fi')) return 'https://www.hs.fi/haku/?query=' + encodeURIComponent(clean);
+      if (urlObj.hostname.includes('aamulehti.fi')) return 'https://www.aamulehti.fi/haku/?query=' + encodeURIComponent(clean);
+      if (urlObj.hostname.includes('poliisi.fi')) return 'https://poliisi.fi/uutiset?q=' + encodeURIComponent(clean);
+      return 'https://www.google.com/search?q=' + encodeURIComponent(clean + ' ' + item.source);
+    }
+  } catch (e) {
+    return item.url;
+  }
+  return item.url;
+}
+
 function setButtonsDisabled(disabled) {
   const btnPori = document.getElementById('btn-pori') || document.getElementById('btn-kouvola');
   const btnSuomi = document.getElementById('btn-suomi') || document.getElementById('btn-klaukkala');
@@ -87,7 +110,7 @@ function answer(choice) {
   }
   
   document.getElementById('context-note').textContent = item.contextNote || '';
-  document.getElementById('source-link').href = item.url;
+  document.getElementById('source-link').href = getArticleUrl(item);
   document.getElementById('source-link').textContent = 'Lue alkuperäinen uutinen (' + item.source + ') ↗';
   
   setButtonsDisabled(true);
