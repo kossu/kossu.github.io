@@ -10,7 +10,7 @@ window.HEADLINES = [
     "city": "Pori",
     "inflectedWord": "Porissa",
     "source": "Satakunnan Kansa / Poliisi",
-    "url": "https://www.satakunnankansa.fi",
+    "url": "https://www.satakunnankansa.fi/haku/?query=Mies+ajoi+ostosk%C3%A4rryill%C3%A4+moottoritien+liittym%C3%A4%C3%A4n+ja+kielt%C3%A4ytyi+poistumasta+Porissa",
     "contextNote": "Poliisi joutui hakemaan miehen ja ostoskärryn turvaan vilkkaasta valtatien eritasoliittymästä."
   },
   {
@@ -20,7 +20,7 @@ window.HEADLINES = [
     "city": "Suomi",
     "inflectedWord": "Kouvolassa",
     "source": "Kaakkois-Suomen poliisi / Iltalehti",
-    "url": "https://www.iltalehti.fi",
+    "url": "https://www.iltalehti.fi/haku?q=Mies+karkasi+poliisiautosta+kesken+liikennevalojen+Kouvolassa",
     "contextNote": "Juoksumatka tyssäsi nopeasti ja partio saatteli karkurin takaisin kyytiin."
   },
   {
@@ -30,7 +30,7 @@ window.HEADLINES = [
     "city": "Pori",
     "inflectedWord": "Porissa",
     "source": "Lounais-Suomen poliisi / IS",
-    "url": "https://www.is.fi",
+    "url": "https://www.is.fi/haku/?query=Poliisikoira+l%C3%B6ysi+varastetun+pakastepizzan+rosvon+housuista+Porissa",
     "contextNote": "Kaupasta paennut näpistelijä oli tunkenut kylmän Grandiosa-pakastepizzan suoraan verkkareidensa sisään."
   },
   {
@@ -40,7 +40,7 @@ window.HEADLINES = [
     "city": "Suomi",
     "inflectedWord": "Kouvolassa",
     "source": "Kaakkois-Suomen poliisi / IS",
-    "url": "https://www.is.fi",
+    "url": "https://www.is.fi/haku/?query=Mies+ajoi+autolla+ilman+toista+eturengasta+kahden+promillen+humalassa+Kouvolassa",
     "contextNote": "Pelkkä vanne kipinöi asfalttiin kilometritolkulla ennen kuin poliisipartio pysäytti hurjan menon."
   },
   {
@@ -50,7 +50,7 @@ window.HEADLINES = [
     "city": "Pori",
     "inflectedWord": "Porissa",
     "source": "Satakunnan Kansa / Poliisi",
-    "url": "https://www.satakunnankansa.fi",
+    "url": "https://www.satakunnankansa.fi/haku/?query=Rattijuoppo+yritti+katsastaa+katsastamattoman+auton+umpihumalassa+katsastuskonttorilla+Porissa",
     "contextNote": "Katsastusmies haistoi voimakkaan viinanhajun heti kuljettajan avattua ikkunan ja soitti paikalle poliisin."
   },
   {
@@ -60,7 +60,7 @@ window.HEADLINES = [
     "city": "Suomi",
     "inflectedWord": "Lahdessa",
     "source": "Etelä-Suomen Sanomat / Poliisi",
-    "url": "https://www.ess.fi",
+    "url": "https://www.ess.fi/haku?q=Poliisi+pys%C3%A4ytti+mopon+ilmastointiputki+mehukatti+Lahdessa",
     "contextNote": "Nuorukaisen tee-se-itse -viritelmä piti kovaa ääntä ja kilvet lähtivät poliisin matkaan."
   },
   {
@@ -70,7 +70,7 @@ window.HEADLINES = [
     "city": "Pori",
     "inflectedWord": "Porissa",
     "source": "Satakunnan Kansa",
-    "url": "https://www.satakunnankansa.fi",
+    "url": "https://www.satakunnankansa.fi/haku/?query=Lokki+nappasi+grillimakkaran+suoraan+miehen+suusta+torilla+Porissa",
     "contextNote": "Porin kauppatorin röyhkeä harmaalokki teki tarkan syöksyn uhrin haukatessa höyryävää makkaraa."
   },
   {
@@ -80,7 +80,7 @@ window.HEADLINES = [
     "city": "Suomi",
     "inflectedWord": "Klaukkalassa",
     "source": "Nurmijärven Uutiset",
-    "url": "https://www.nurmijarvenuutiset.fi",
+    "url": "https://www.nurmijarvenuutiset.fi/haku?q=Liikennevalot+n%C3%A4yttiv%C3%A4t+pelkk%C3%A4%C3%A4+punaista+kaikille+suuntauksille+Klaukkalassa",
     "contextNote": "Ohjauskeskuksen häiriö aiheutti pitkät jonot aamuruuhkassa ja autoilijat soittivat kuntaan."
   },
   {
@@ -90,7 +90,7 @@ window.HEADLINES = [
     "city": "Pori",
     "inflectedWord": "Porissa",
     "source": "Yle Uutiset / Satakunta",
-    "url": "https://yle.fi/uutiset",
+    "url": "https://yle.fi/uutiset/tuoreet?haku=Mies+saapui+virastotaloon+lehtipuhaltimen+kanssa+Porissa",
     "contextNote": "Turhautunut asiakas käynnisti polttomoottorikäyttöisen puhaltimen viraston aulassa ja sai syytteen järjestyshäiriöstä."
   },
   {
@@ -100,7 +100,7 @@ window.HEADLINES = [
     "city": "Suomi",
     "inflectedWord": "Tampereella",
     "source": "Aamulehti / IS",
-    "url": "https://www.aamulehti.fi",
+    "url": "https://www.aamulehti.fi/haku/?query=Alaston+mies+leikkasi+nurmikkoa+sunnuntaiaamuna+Tampereella",
     "contextNote": "Aamukahvilla ollut naapuri järkyttyi näystä ja poliisipartio kävi muistuttamassa pukeutumissäännöistä."
   },
   {
@@ -110,7 +110,7 @@ window.HEADLINES = [
     "city": "Pori",
     "inflectedWord": "Porissa",
     "source": "Satakunnan Kansa / Iltalehti",
-    "url": "https://www.iltalehti.fi",
+    "url": "https://www.satakunnankansa.fi/haku/?query=Yyterin+hiekkadyyneille+eksynyt+autoilija+upposi+hiekkaan+Porissa",
     "contextNote": "Navigaattorin ohjeita sokeasti noudattanut kuljettaja ajoi suoraan luonnonsuojelualueen rantahietikkoon."
   },
   {
@@ -120,7 +120,7 @@ window.HEADLINES = [
     "city": "Suomi",
     "inflectedWord": "Oulussa",
     "source": "Kaleva / IS",
-    "url": "https://www.kaleva.fi",
+    "url": "https://www.kaleva.fi/haku?q=tuulilasinpyyhkimen%C3%A4+toimi+narulla+vedett%C3%A4v%C3%A4+tiskiharja+Oulussa",
     "contextNote": "Insinööritaidonnäyte: naru oli vedetty sivuikkunoista ohjaamoon ja kuski pyyhki tuulilasia käsivoimin vetämällä."
   },
   {
@@ -130,7 +130,7 @@ window.HEADLINES = [
     "city": "Pori",
     "inflectedWord": "Porissa",
     "source": "Satakunnan Kansa / Pelastuslaitos",
-    "url": "https://www.satakunnankansa.fi",
+    "url": "https://www.satakunnankansa.fi/haku/?query=saunan+kerrostalokaksion+parvekkeelle+l%C3%A4mmitti+puilla+Porissa",
     "contextNote": "Paksu savu parvekkeelta säikäytti naapurit ja toi paikalle neljä sammutusyksikköä sireenit soiden."
   },
   {
@@ -140,7 +140,7 @@ window.HEADLINES = [
     "city": "Suomi",
     "inflectedWord": "Turussa",
     "source": "Turun Sanomat / Poliisi",
-    "url": "https://www.ts.fi",
+    "url": "https://www.ts.fi/haku?q=Mies+marssi+pankkiin+sukkahousut+p%C3%A4%C3%A4ss%C3%A4+lompakkonsa+Turussa",
     "contextNote": "Hämmentävä välikohtaus päättyi miehen hätäiseen poistumiseen paikalta ennen virkavallan saapumista."
   },
   {
@@ -150,7 +150,7 @@ window.HEADLINES = [
     "city": "Pori",
     "inflectedWord": "Porissa",
     "source": "Lounais-Suomen poliisi",
-    "url": "https://poliisi.fi",
+    "url": "https://poliisi.fi/uutiset?q=H%C3%A4vitt%C3%A4j%C3%A4lent%C3%A4j%C3%A4%C3%A4+leikkinyt+ruohonleikkurilla+Porissa",
     "contextNote": "Päättömällä vauhdilla lentäjäkypärä päässä kaahannut kuljettaja sai sakot ja leikkuri meni ajokieltoon."
   },
   {
@@ -160,7 +160,7 @@ window.HEADLINES = [
     "city": "Suomi",
     "inflectedWord": "Helsingissä",
     "source": "Helsingin Sanomat",
-    "url": "https://www.hs.fi",
+    "url": "https://www.hs.fi/haku/?query=Kerrostalon+rappuk%C3%A4yt%C3%A4v%C3%A4st%C3%A4+l%C3%B6ytyi+eksynyt+siili+Helsingiss%C3%A4",
     "contextNote": "Siili oli kirmannut auki jääneestä alaovesta ja kiivennyt rappusia kerros kerrokselta."
   },
   {
@@ -170,7 +170,7 @@ window.HEADLINES = [
     "city": "Pori",
     "inflectedWord": "Porissa",
     "source": "Satakunnan Kansa / IS",
-    "url": "https://www.is.fi",
+    "url": "https://www.satakunnankansa.fi/haku/?query=ty%C3%B6nsi+anastettua+flyygelia+rullalaudan+p%C3%A4%C3%A4ll%C3%A4+Porissa",
     "contextNote": "Soittimen kuljetusyritelmä pysähtyi katukiveykseen ja poliisi palautti arvokkaan soittimen omistajalleen."
   },
   {
@@ -180,7 +180,7 @@ window.HEADLINES = [
     "city": "Suomi",
     "inflectedWord": "Klaukkalan",
     "source": "Nurmijärven Uutiset",
-    "url": "https://www.nurmijarvenuutiset.fi",
+    "url": "https://www.nurmijarvenuutiset.fi/haku?q=Karkuteille+l%C3%A4htenyt+minipossu+Klaukkalan+pururadalla",
     "contextNote": "Lemmikkipossu päätti ottaa omatoimisen aamulenkin ja nuuskia kuntopolun mustikoita."
   },
   {
@@ -190,7 +190,7 @@ window.HEADLINES = [
     "city": "Pori",
     "inflectedWord": "Porissa",
     "source": "Satakunnan Kansa",
-    "url": "https://www.satakunnankansa.fi",
+    "url": "https://www.satakunnankansa.fi/haku/?query=Kirjurinluodon+hanhet+valtasivat+lasten+leikkipuiston+Porissa",
     "contextNote": "Ärhäkät valkoposkihanhet suojelivat poikasiaan ja estivät pääsyn karuselliin ja keinuille."
   },
   {
@@ -200,7 +200,7 @@ window.HEADLINES = [
     "city": "Suomi",
     "inflectedWord": "Jyväskylässä",
     "source": "Keskisuomalainen / Poliisi",
-    "url": "https://www.ksml.fi",
+    "url": "https://www.ksml.fi/haku?q=rattijuoppo+auton+liikkuneen+pelk%C3%A4ll%C3%A4+my%C3%B6t%C3%A4tuulella+Jyv%C3%A4skyl%C3%A4ss%C3%A4",
     "contextNote": "Selitys ei mennyt poliisipartiolle läpi ja miehen ajokortti päätyi virkavallan hyllylle."
   },
   {
@@ -210,7 +210,7 @@ window.HEADLINES = [
     "city": "Pori",
     "inflectedWord": "Porissa",
     "source": "Satakunnan Kansa",
-    "url": "https://www.satakunnankansa.fi",
+    "url": "https://www.satakunnankansa.fi/haku/?query=Autoilija+yritti+maksaa+pys%C3%A4k%C3%B6intimaksun+Neuvostoliiton+ruplalla+Porissa",
     "contextNote": "Automaatti jumiutui täysin ja huoltomies löysi kolikkopesästä 1980-luvun metalliruplan."
   },
   {
@@ -220,7 +220,7 @@ window.HEADLINES = [
     "city": "Suomi",
     "inflectedWord": "Kouvolan",
     "source": "Iltalehti / Tilannemedia",
-    "url": "https://www.iltalehti.fi",
+    "url": "https://www.iltalehti.fi/haku?q=Mies+yritti+paeta+poliisia+polkupy%C3%B6r%C3%A4ll%C3%A4+moottoritiell%C3%A4+Kouvolan+liittym%C3%A4n",
     "contextNote": "Polkupyöräilijä yritti polkea karkuun moottoritien pientareella maijan vilkkujen loisteessa."
   },
   {
@@ -230,7 +230,7 @@ window.HEADLINES = [
     "city": "Pori",
     "inflectedWord": "Porissa",
     "source": "Yle Satakunta",
-    "url": "https://yle.fi/uutiset",
+    "url": "https://yle.fi/uutiset/tuoreet?haku=koulun+py%C3%B6r%C3%A4telineest%C3%A4+kiinni+kahlitun+moottorisahan+Porissa",
     "contextNote": "Joku oli lukinnut järeän Stihl-moottorisahan numerolukolla polkupyörätelineeseen keskellä koulupäivää."
   },
   {
@@ -240,7 +240,7 @@ window.HEADLINES = [
     "city": "Suomi",
     "inflectedWord": "Vantaalla",
     "source": "Vantaan Sanomat",
-    "url": "https://www.vantaansanomat.fi",
+    "url": "https://www.vantaansanomat.fi/haku?q=roskakatoksesta+l%C3%B6ytyi+satoja+kiloja+hernekeittopurkkeja+Vantaalla",
     "contextNote": "Paikallinen asukas jakoi kuvan hernekeittovuoresta ja asia puhutti pitkään somessa."
   },
   {
@@ -250,7 +250,7 @@ window.HEADLINES = [
     "city": "Pori",
     "inflectedWord": "Porissa",
     "source": "Satakunnan Kansa / Ilta-Sanomat",
-    "url": "https://www.is.fi",
+    "url": "https://www.satakunnankansa.fi/haku/?query=Kylpyhuoneen+p%C3%B6nt%C3%B6st%C3%A4+kurkisti+eksynyt+piisami+Porissa",
     "contextNote": "Kokemäenjoesta viemäriverkostoon harhautunut eläin toimitettiin pelastuslaitoksen avulla takaisin luontoon."
   },
   {
@@ -260,7 +260,7 @@ window.HEADLINES = [
     "city": "Suomi",
     "inflectedWord": "Joensuussa",
     "source": "Karjalainen / IS",
-    "url": "https://www.karjalainen.fi",
+    "url": "https://www.karjalainen.fi/haku?q=suuttui+ravintolassa+l%C3%A4hte%C3%A4+keitti%C3%B6%C3%B6n+paistamaan+omat+ranskalaisensa+Joensuussa",
     "contextNote": "Nälkäinen asiakas marssi henkilökunnan tiloihin rasvakeittimen äärelle ennen kuin hänet ohjattiin ulos."
   },
   {
@@ -270,7 +270,7 @@ window.HEADLINES = [
     "city": "Pori",
     "inflectedWord": "Porissa",
     "source": "Lounais-Suomen poliisi / Iltalehti",
-    "url": "https://www.iltalehti.fi",
+    "url": "https://www.satakunnankansa.fi/haku/?query=piiloutui+puutarhatonttujen+sekaan+kukkapenkkiin+teeskenteli+patsasta+Porissa",
     "contextNote": "Koirapartio löysi liikkumattomana seisoneen miehen sekunneissa ja käsiraudat napsahtivat kiinni."
   },
   {
@@ -280,7 +280,7 @@ window.HEADLINES = [
     "city": "Suomi",
     "inflectedWord": "Espoosta",
     "source": "Länsiväylä / IS",
-    "url": "https://www.is.fi",
+    "url": "https://www.lansivayla.fi/haku?q=Pitsal%C3%A4hetti+eksyi+toimitti+tilausruoat+naapurikuntaan+Espoosta",
     "contextNote": "Samanniminen tie löytyi naapurikunnasta ja pizza ehti jäähtyä ennen totuuden valkenemista."
   },
   {
@@ -290,7 +290,7 @@ window.HEADLINES = [
     "city": "Pori",
     "inflectedWord": "Porissa",
     "source": "Satakunnan Kansa",
-    "url": "https://www.satakunnankansa.fi",
+    "url": "https://www.satakunnankansa.fi/haku/?query=palauttaa+kauppaan+puoliksi+sy%C3%B6dyn+joulukinkun+huonon+maun+takia+Porissa",
     "contextNote": "Kauppias kieltäytyi hyvityksestä, jolloin närkästynyt asiakas vaati kuluttaja-asiamiestä paikalle."
   },
   {
@@ -300,7 +300,7 @@ window.HEADLINES = [
     "city": "Suomi",
     "inflectedWord": "Kuopiossa",
     "source": "Savon Sanomat",
-    "url": "https://www.savonsanomat.fi",
+    "url": "https://www.savonsanomat.fi/haku?q=parkkihallista+l%C3%B6ytyi+leirint%C3%A4teltta+ja+retkituoli+Kuopiossa",
     "contextNote": "Kauppakeskuksen aamuvuoroon tullut vartija löysi autopaikan nurkkaukseen pystytetyn täyden retkileirin."
   },
   {
@@ -310,7 +310,7 @@ window.HEADLINES = [
     "city": "Pori",
     "inflectedWord": "Porissa",
     "source": "Poliisi.fi / Satakunnan Kansa",
-    "url": "https://www.satakunnankansa.fi",
+    "url": "https://www.satakunnankansa.fi/haku/?query=liikennevaloihin+nukahtanut+kuljettaja+poliisi+koputti+lasiin+Porissa",
     "contextNote": "Valot ehtivät vaihtua useita kertoja auton seistessä paikallaan moottori huristen."
   },
   {
@@ -320,7 +320,7 @@ window.HEADLINES = [
     "city": "Suomi",
     "inflectedWord": "Rovaniemellä",
     "source": "Lapin Kansa",
-    "url": "https://www.lapinkansa.fi",
+    "url": "https://www.lapinkansa.fi/haku?q=Kissa+kiipesi+lipputankoon+eik%C3%A4+suostunut+tulemaan+alas+Rovaniemell%C3%A4",
     "contextNote": "Kissa nautti maisemista 9 metrin korkeudessa, kunnes nälkä ajoi sen takaisin maan pinnalle."
   },
   {
@@ -330,7 +330,7 @@ window.HEADLINES = [
     "city": "Pori",
     "inflectedWord": "Porissa",
     "source": "Satakunnan Kansa / Yle",
-    "url": "https://yle.fi/uutiset",
+    "url": "https://yle.fi/uutiset/tuoreet?haku=Kaupungin+joulukuusi+kaatui+torilla+Porissa",
     "contextNote": "Myrskytuuli katkaisi suuren torikuusen jalustan ja aiheutti melkoisen rytäkän yöaikaan."
   },
   {
@@ -340,7 +340,7 @@ window.HEADLINES = [
     "city": "Suomi",
     "inflectedWord": "Vaasassa",
     "source": "Pohjalainen / Poliisi",
-    "url": "https://ilkkapohjalainen.fi",
+    "url": "https://ilkkapohjalainen.fi/haku?q=suuren+taulutelevision+polkupy%C3%B6r%C3%A4n+tarakalla+kotiin+Vaasassa",
     "contextNote": "65-tuumainen televisio horjui pyörän päällä niin pahasti, että ohi ajanut poliisipartio kiinnitti huomion heti."
   },
   {
@@ -350,7 +350,7 @@ window.HEADLINES = [
     "city": "Pori",
     "inflectedWord": "Porissa",
     "source": "Satakunnan Kansa",
-    "url": "https://www.satakunnankansa.fi",
+    "url": "https://www.satakunnankansa.fi/haku/?query=Uimahallin+saunassa+riideltiin+l%C3%B6ylynheiton+suunnasta+Porissa",
     "contextNote": "Kaksi vakiokävijää ei päässyt sopuun siitä, heitetäänkö vettä kiuaskivien etuosaan vai perälle."
   },
   {
@@ -360,7 +360,7 @@ window.HEADLINES = [
     "city": "Suomi",
     "inflectedWord": "Kotkassa",
     "source": "Kymen Sanomat",
-    "url": "https://www.kymensanomat.fi",
+    "url": "https://www.kymensanomat.fi/haku?q=Kerrostalon+hissiin+jumiutunut+asukas+kolmen+tunnin+torkkujen+j%C3%A4lkeen+Kotkassa",
     "contextNote": "Väsynyt asukas totesi hissin pysähtyneen, otti repun päänaluseksi ja nukkui ennen hälytyksen tekoa."
   },
   {
@@ -370,7 +370,7 @@ window.HEADLINES = [
     "city": "Pori",
     "inflectedWord": "Porissa",
     "source": "Satakunnan Kansa",
-    "url": "https://www.satakunnankansa.fi",
+    "url": "https://www.satakunnankansa.fi/haku/?query=Kaupunki+asensi+uudet+penkit+puistoon+v%C3%A4%C3%A4rinp%C3%A4in+Porissa",
     "contextNote": "Etelärannan kävelykadun penkit asennettiin vahingossa niin, että istujat tuijottivat suoraan tiiliseinää Jokirannan sijaan."
   },
   {
@@ -380,7 +380,7 @@ window.HEADLINES = [
     "city": "Suomi",
     "inflectedWord": "Mikkelissä",
     "source": "Länsi-Savo",
-    "url": "https://www.lansi-savo.fi",
+    "url": "https://www.lansi-savo.fi/haku?q=naapurin+robottiruohonleikkuri+jurskutti+h%C3%A4nen+kukkapenkki%C3%A4%C3%A4n+Mikkeliss%C3%A4",
     "contextNote": "Rajakaapelin katkeaminen johti robottileikkurin seikkailuun ja naapurisovun koetukseen."
   }
 ];
