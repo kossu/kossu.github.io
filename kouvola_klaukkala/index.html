@@ -256,7 +256,7 @@ body {
     <main class="quiz-card">
       <div class="newspaper-header">
         <span class="paper-kicker">ERIKOISUUTISET · TAPAHTUI SUOMESSA</span>
-        <span class="source-tag" id="paper-source">Iltalehti</span>
+        <span class="source-tag" id="paper-source">Lähde salattu 🔒</span>
       </div>
 
       <div class="headline-container">
@@ -287,6 +287,7 @@ body {
       <p class="final-score" id="final-score-text">Sait 0 / 10 pistettä</p>
       <p class="verdict" id="verdict-text"></p>
       <button class="restart-btn" onclick="initGame()">Pelaa uudelleen</button>
+      <a class="whatsapp-btn" id="whatsapp-share-btn" href="#" target="_blank" rel="noopener noreferrer">Jaa WhatsAppissa</a>
     </div>
   </div>
 
@@ -684,9 +685,12 @@ function showGameOver() {
     verdict = 'Kohtalainen tulos! Pieni opintoretki Kymenlaaksoon tai Nurmijärvelle voisi olla paikallaan.';
   }
   document.getElementById('verdict-text').textContent = verdict;
-  const appUrl = window.location.href;
-  const shareText = encodeURIComponent('Kouvola vai Klaukkala? -uutisvisa 🗞️ Sain ' + score + ' / ' + currentDeck.length + ' pistettä! Erotatko sinä Kymenlaakson ja Nurmijärven omituisuudet toisistaan? Pelaa täällä: ' + appUrl);
-  document.getElementById('whatsapp-share-btn').href = 'https://api.whatsapp.com/send?text=' + shareText;
+  const whatsappBtn = document.getElementById('whatsapp-share-btn');
+  if (whatsappBtn) {
+    const appUrl = window.location.href;
+    const shareText = encodeURIComponent('Kouvola vai Klaukkala? -uutisvisa 🗞️ Sain ' + score + ' / ' + currentDeck.length + ' pistettä! Erotatko sinä Kymenlaakson ja Nurmijärven omituisuudet toisistaan? Pelaa täällä: ' + appUrl);
+    whatsappBtn.href = 'https://api.whatsapp.com/send?text=' + shareText;
+  }
 }
 
 // Käynnistä peli automaattisesti
