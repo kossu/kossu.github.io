@@ -194,6 +194,24 @@ body {
   background: #eab308;
 }
 
+.whatsapp-btn {
+  display: block;
+  background: #16a34a;
+  color: #fff;
+  font-weight: 800;
+  font-size: 16px;
+  padding: 14px;
+  border-radius: 8px;
+  text-decoration: none;
+  text-align: center;
+  transition: background 0.15s ease;
+  margin-top: 10px;
+}
+
+.whatsapp-btn:hover {
+  background: #15803d;
+}
+
 .game-over-modal {
   background: #1e293b;
   border: 1px solid #334155;
@@ -666,6 +684,9 @@ function showGameOver() {
     verdict = 'Kohtalainen tulos! Pieni opintoretki Kymenlaaksoon tai Nurmijärvelle voisi olla paikallaan.';
   }
   document.getElementById('verdict-text').textContent = verdict;
+  const appUrl = window.location.href;
+  const shareText = encodeURIComponent('Kouvola vai Klaukkala? -uutisvisa 🗞️ Sain ' + score + ' / ' + currentDeck.length + ' pistettä! Erotatko sinä Kymenlaakson ja Nurmijärven omituisuudet toisistaan? Pelaa täällä: ' + appUrl);
+  document.getElementById('whatsapp-share-btn').href = 'https://api.whatsapp.com/send?text=' + shareText;
 }
 
 // Käynnistä peli automaattisesti
