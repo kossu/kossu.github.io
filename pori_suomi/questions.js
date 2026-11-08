@@ -384,4 +384,3 @@ window.HEADLINES = [
     "contextNote": "Rajakaapelin katkeaminen johti robottileikkurin seikkailuun ja naapurisovun koetukseen."
   }
 ];
-
